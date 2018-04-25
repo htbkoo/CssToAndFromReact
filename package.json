@@ -108,6 +108,9 @@
     }
   },
   "devDependencies": {
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
     "jspm": "^0.17.0-beta.28",
     "mocha": "^5.1.1",
     "nws": "^1.1.1"
