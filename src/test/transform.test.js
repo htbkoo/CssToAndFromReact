@@ -1,6 +1,6 @@
 import chai from 'chai';
 
-import {reverse} from '../transform';
+import {promiseReverse} from '../transform';
 
 describe("transform", function () {
     describe("reverse", function () {
@@ -9,13 +9,14 @@ describe("transform", function () {
             const reactText = JSON.stringify({"body": {"marginLeft": "5%"}});
 
             // when
-            let resultCssText = reverse(reactText);
+            let promise = promiseReverse(reactText);
 
             // then
             const expectedCssText = "body {\n" +
-                " margin-left: 5%;\n" +
+                "    margin-left: 5%\n" +
                 "}";
-            chai.expect(resultCssText).to.equal(expectedCssText);
+
+            return promise.then(resultCssText => chai.expect(resultCssText.css).to.equal(expectedCssText));
         });
     });
 });
