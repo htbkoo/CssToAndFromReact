@@ -1,29 +1,54 @@
-var css = require("css");
-// var reactCSS = require('reactcss');
-var reactCSS = require('reactcss').default;
+let css = require("css");
+// let reactCSS = require('reactcss');
+let reactCSS = require('reactcss').default;
+
+
+const postcss = require('postcss');
+const postcssJs = require('postcss-js');
+const precss = require('precss');
+const autoprefixer = require('autoprefixer');
+
 
 describe("transform", function () {
-    it("spec name", function () {
-        var reactText = JSON.stringify({"a": {"color": "red"}});
+    it("postcss", function () {
+        // let reactText = JSON.stringify({"body": {"color": "red"}});
+        // let reactText = JSON.stringify({"marginLeft": "5%"});
+        let reactText = JSON.stringify({"body": {"marginLeft": "5%"}});
+
+        // postcss()
+        postcss([precss, autoprefixer])
+            .process(JSON.parse(reactText), {parser: postcssJs, from: undefined})
+            .then((result) => {
+                console.log(JSON.stringify(result.css));
+
+                // result.css //=> top: 10px;
+                //   &:hover { top: 5px; }
+            });
+    });
+
+    xit("reactCss", function () {
+        let reactText = JSON.stringify({"a": {"color": "red"}});
 
         // let parsed = JSON.parse(reactText);
-        var result = reactCSS({'default': JSON.parse(reactText)});
+        let result = reactCSS({'default': JSON.parse(reactText)});
 
         console.log(JSON.stringify(result));
     });
 
     xit("spec nam e", function () {
-        // var ast = css.parse('body { font-size: 12px; }', { source: 'source.css' });
-        var ast = css.parse('body { font-size: 12px; }');
+        // let ast = css.parse('body { font-size: 12px; }', { source: 'source.css' });
+        let ast = css.parse('body { font-size: 12px; }');
 
-        // var css = css.stringify(ast);
+        // let css = css.stringify(ast);
 
-        var result = css.stringify(ast, {sourcemap: true});
+        let result = css.stringify(ast, {sourcemap: true});
+        console.log(result);
     });
 
     xit("should try css parser", function () {
-        var obj = css.parse("body {margin-right: #FFFFF;}");
+        let obj = css.parse("body {margin-right: #FFFFF;}");
         console.log(css.stringify("{\"body\":{\"marginRight\":\"#FFFFF\"}}"));
+        console.log(obj);
     });
 });
 
