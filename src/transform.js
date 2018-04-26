@@ -1,5 +1,12 @@
 import cssParser from 'css';
 
+// noinspection ES6CheckImport, SpellCheckingInspection
+import postcss from "postcss";
+// noinspection ES6CheckImport, SpellCheckingInspection
+import postcssJs from "postcss-js";
+// noinspection ES6CheckImport, SpellCheckingInspection
+import autoprefixer from "autoprefixer";
+
 //
 // Transform implementation or originally thanks to
 // https://github.com/raphamorim/native-css
@@ -29,10 +36,12 @@ function transformRules(self, rules, result) {
     });
 }
 
-var cleanPropertyName = function(name) {
+var cleanPropertyName = function (name) {
 
     // turn things like 'align-items' into 'alignItems'
-    name = name.replace(/(-.)/g, function(v) { return v[1].toUpperCase(); });
+    name = name.replace(/(-.)/g, function (v) {
+        return v[1].toUpperCase();
+    });
 
     return name;
 };
@@ -50,28 +59,33 @@ var nameGenerator = function (name) {
     return name;
 };
 
-export function transform (inputCssText) {
+export function transform(inputCssText) {
 
-  if(!inputCssText) {
-    throw new Error('missing css text to transform');
-  }
+    if (!inputCssText) {
+        throw new Error('missing css text to transform');
+    }
 
-  // If the input "css" doesn't wrap it with a css class (raw styles)
-  // we need to wrap it with a style so the css parser doesn't choke.
-  var bootstrapWithCssClass = false;
-  if(inputCssText.indexOf("{") === -1) {
-    bootstrapWithCssClass = true;
-    inputCssText = `.bootstrapWithCssClass { ${inputCssText} }`;
-  }
+    // If the input "css" doesn't wrap it with a css class (raw styles)
+    // we need to wrap it with a style so the css parser doesn't choke.
+    var bootstrapWithCssClass = false;
+    if (inputCssText.indexOf("{") === -1) {
+        bootstrapWithCssClass = true;
+        inputCssText = `.bootstrapWithCssClass { ${inputCssText} }`;
+    }
 
-  var css = cssParser.parse(inputCssText);
-  var result = {};
-  transformRules(this, css.stylesheet.rules, result);
+    var css = cssParser.parse(inputCssText);
+    var result = {};
+    transformRules(this, css.stylesheet.rules, result);
 
-  // Don't expose the implementation detail of our wrapped css class.
-  if(bootstrapWithCssClass) {
-    result = result.bootstrapWithCssClass;
-  }
+    // Don't expose the implementation detail of our wrapped css class.
+    if (bootstrapWithCssClass) {
+        result = result.bootstrapWithCssClass;
+    }
 
-  return result;
+    return result;
+}
+
+export function promiseReverse(inputReactObjText) {
+    return postcss([autoprefixer])
+        .process(JSON.parse(inputReactObjText), {parser: postcssJs, from: undefined});
 }
