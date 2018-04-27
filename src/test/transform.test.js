@@ -18,5 +18,20 @@ describe("transform", function () {
 
             return promise.then(resultCssText => chai.expect(resultCssText.css).to.equal(expectedCssText));
         });
+
+        xit("should do what if input is garbage?", function () {
+            // given
+            const reactText = JSON.stringify({"not valid": {"no recognizable": "some garbage"}});
+
+            // when
+            let promise = promiseReverse(reactText);
+
+            // then
+            const expectedCssText = "body {\n" +
+                "    margin-left: 5%\n" +
+                "}";
+
+            return promise.then(resultCssText => chai.expect(resultCssText.css).to.equal(expectedCssText));
+        });
     });
 });
