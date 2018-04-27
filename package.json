@@ -12,6 +12,9 @@
     },
     "dependencies": {
       "css": "npm:css@^2.2.1",
+      "autoprefixer": "npm:autoprefixer@^8.3.0",
+      "postcss": "npm:postcss@^6.0.21",
+      "postcss-js": "npm:postcss-js@^1.0.1",
       "react-dom": "npm:react-dom@^15.0.1"
     },
     "devDependencies": {
