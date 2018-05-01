@@ -3,7 +3,7 @@ import React from 'react';
 import Input from "./Input";
 import {transform} from './transform';
 
-var initialStarterText = "";
+let initialStarterText = "";
 
 type AppProps = {};
 type AppState = {
@@ -53,9 +53,9 @@ export default class App extends React.Component<AppProps, AppState> {
         }
 
         try {
-            var transformed = transform(this.state.inputText);
+            let transformed = transform(this.state.inputText);
 
-            var result = JSON.stringify(transformed, null, shouldFormat ? 2 : 0);
+            let result = JSON.stringify(transformed, null, shouldFormat ? 2 : 0);
             this.setState({
                 outputText: result,
                 error: null,
@@ -69,12 +69,12 @@ export default class App extends React.Component<AppProps, AppState> {
     }
 
     render() {
-        var outputCssStyle = this.state.error ? {
+        let outputCssStyle = this.state.error ? {
             "backgroundColor": "lightcoral"
         } : null;
         console.log('state', this.state);
-        var inputText = this.state.inputText;
-        var outputText = this.state.error || this.state.outputText;
+        let inputText = this.state.inputText;
+        let outputText = this.state.error || this.state.outputText;
 
         return (
             <div style={{"textAlign": "center"}}>
