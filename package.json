@@ -10,7 +10,10 @@
     "ghpages:rename": "node ./bin/rename -s build -d docs"
   },
   "dependencies": {
+    "autoprefixer": "^8.4.1",
     "css": "^2.2.1",
+    "postcss": "^6.0.22",
+    "postcss-js": "^1.0.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-scripts-ts": "2.15.1"
@@ -23,6 +26,7 @@
     "@types/react": "^16.3.13",
     "@types/react-dom": "^16.0.5",
     "args": "^4.0.0",
+    "chai": "^4.1.2",
     "cross-env": "^5.1.4",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
