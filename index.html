@@ -140,7 +140,7 @@
     <script src="jspm.config.js"></script>
     <script>
         function startApp() {
-            SystemJS.import('app');
+            SystemJS.import('render');
         }
         if (System.production) {
             System.import('./build.js').then(startApp);
