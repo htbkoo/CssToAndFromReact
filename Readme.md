@@ -11,8 +11,8 @@
 * So this repo is an attempt to add bi-directional transformation between React Styles <-> CSS
 * In short these changes are added on top of the original repo
     - [x] updated .gitignore (because IntelliJ IDEA is used so some of the config files should be ignored as well)
-    - [ ] (Just personal preference) migrated yarn / npm
-    - [ ] (Just personal preference) migrated to TypeScript
+    - [x] (Just personal preference) migrated to yarn / npm
+    - [x] (Just personal preference) migrated to TypeScript
     - [ ] Added automated test coverage
     - [ ] Added functionality to transform from React back to CSS
 * An instance would be deployed to GitHub Page: https://htbkoo.github.io/CssToAndFromReact/
