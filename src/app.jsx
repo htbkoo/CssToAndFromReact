@@ -105,8 +105,3 @@ export default class App extends React.Component {
         );
     }
 }
-
-ReactDOM.render(<App/>, document.getElementById('main'), () => {
-    var loader = document.getElementById('loader');
-    loader && (loader.style.display = "none");
-});
