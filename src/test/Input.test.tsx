@@ -3,14 +3,15 @@ import * as React from 'react';
 
 import Input from "../Input";
 
+import {NO_OP} from "../utils/utils";
+
 describe("Input", function () {
     it("should shallow without error", function () {
         shallow(
             <Input
                 value="someValue"
                 placeholder="somePlaceholder"
-                onChange={() => {
-                }}
+                onChange={NO_OP}
             />
         );
     });
