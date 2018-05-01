@@ -1,29 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
+import Input from "./Input";
 import {transform} from './transform';
-
-type InputProps = {
-    value: string,
-    placeholder: string,
-    onChange: (event) => void
-};
-type InputState = {};
-
-class Input extends React.Component<InputProps, InputState> {
-    componentDidUpdate(prevProps) {
-        var node = ReactDOM.findDOMNode(this) as HTMLInputElement; // reference: https://github.com/Microsoft/TypeScript/issues/10453#issuecomment-301263769
-        var oldLength = node.value.length;
-        var oldIdx = node.selectionStart;
-        node.value = this.props.value;
-        var newIdx = Math.max(0, node.value.length - oldLength + oldIdx);
-        node.selectionStart = node.selectionEnd = newIdx;
-    }
-
-    render() {
-        return <textarea cols={40} rows={20} {...this.props} value={undefined}/>;
-    }
-}
 
 var initialStarterText = "";
 
@@ -105,12 +83,7 @@ export default class App extends React.Component<AppProps, AppState> {
                 <textarea ref='outputCss' cols={40} rows={20} style={outputCssStyle} value={outputText}/>
                 <br/>
                 <input style={{"marginLeft": "266px"}} ref="useNewline" checked={this.state.shouldFormat}
-                       type="checkbox" onChange={e => {
-                    // e.preventDefault();
-                    console.log(`isChecked: ${e.target.checked}`);
-                    // this.setState({shouldFormat: e.target.checked});
-                    this.update(e.target.checked);
-                }}/> Format
+                       type="checkbox" onChange={e => this.update(e.target.checked)}/> Format
             </div>
         );
     }
