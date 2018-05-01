@@ -1,5 +1,9 @@
 import cssParser from 'css';
 
+type HasBootstrapWithCssClass = {
+    bootstrapWithCssClass: any
+};
+
 //
 // Transform implementation or originally thanks to
 // https://github.com/raphamorim/native-css
@@ -70,7 +74,7 @@ export function transform (inputCssText) {
 
   // Don't expose the implementation detail of our wrapped css class.
   if(bootstrapWithCssClass) {
-    result = result.bootstrapWithCssClass;
+    result = (result as HasBootstrapWithCssClass).bootstrapWithCssClass;
   }
 
   return result;
