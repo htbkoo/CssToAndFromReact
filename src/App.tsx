@@ -83,12 +83,7 @@ export default class App extends React.Component<AppProps, AppState> {
                 <textarea ref='outputCss' cols={40} rows={20} style={outputCssStyle} value={outputText}/>
                 <br/>
                 <input style={{"marginLeft": "266px"}} ref="useNewline" checked={this.state.shouldFormat}
-                       type="checkbox" onChange={e => {
-                    // e.preventDefault();
-                    console.log(`isChecked: ${e.target.checked}`);
-                    // this.setState({shouldFormat: e.target.checked});
-                    this.update(e.target.checked);
-                }}/> Format
+                       type="checkbox" onChange={e => this.update(e.target.checked)}/> Format
             </div>
         );
     }
