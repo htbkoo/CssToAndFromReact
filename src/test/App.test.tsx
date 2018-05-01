@@ -2,7 +2,7 @@ import {mount} from "enzyme";
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import App from './App';
+import App from '../App';
 
 describe("App", function () {
     it('renders without crashing', () => {
