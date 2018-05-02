@@ -13,8 +13,10 @@
     - [x] updated .gitignore (because IntelliJ IDEA is used so some of the config files should be ignored as well)
     - [x] (Just personal preference) migrated to yarn / npm
     - [x] (Just personal preference) migrated to TypeScript
-    - [ ] Added automated test coverage
-    - [ ] Added functionality to transform from React back to CSS
+    - [x] Added automated test coverage
+    - [x] Added functionality to transform from React back to CSS
+    - [ ] Full (at least enough) automated test coverage
+    - [ ] More refactoring (more related to personal style)
 * An instance would be deployed to GitHub Page: https://htbkoo.github.io/CssToAndFromReact/
 
 ### How do I get set up? ###
