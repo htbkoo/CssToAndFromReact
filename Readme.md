@@ -2,7 +2,7 @@
 
 ### TL;DR ###
 
-(WIP) CSS <-> React (style) here: https://htbkoo.github.io/CssToAndFromReact/ 
+CSS <-> React (in-line style) here: https://htbkoo.github.io/CssToAndFromReact/ 
 
 ### What is this repository for? ###
 
@@ -15,6 +15,7 @@
     - [x] (Just personal preference) migrated to TypeScript
     - [x] Added automated test coverage
     - [x] Added functionality to transform from React back to CSS
+    - [ ] Update description in the page
     - [ ] Full (at least enough) automated test coverage
     - [ ] More refactoring (more related to personal style)
 * An instance would be deployed to GitHub Page: https://htbkoo.github.io/CssToAndFromReact/
