@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {CSSProperties} from 'react';
 import ReactDOM from 'react-dom';
 
 type InputProps = {
     value: string,
     placeholder: string,
-    onChange: (event) => void
+    onChange: (event) => void,
+    style?: CSSProperties
 };
 type InputState = {};
 
