@@ -112,7 +112,7 @@ export default class App extends React.Component<AppProps, AppState> {
             <div style={{"textAlign": "center"}}>
                 <Input
                     ref='inputCss' placeholder="Type or paste CSS here..." onChange={this.inputTextUpdate}
-                    value={inputText}
+                    value={inputText} style={inputCssStyle}
                 />
                 <textarea
                     ref='outputCss' placeholder="Type or paste React in-line style object here..."
