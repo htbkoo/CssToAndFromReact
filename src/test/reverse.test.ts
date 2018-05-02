@@ -5,7 +5,7 @@ import {promiseReverse} from '../reverse';
 describe("reverse", function () {
     it("should reverse reactStyleObjText to css text", function () {
         // given
-        const reactText = JSON.stringify({"body": {"marginLeft": "5%"}});
+        const reactText = '{"body": {"marginLeft": "5%"}}';
 
         // when
         let promise = promiseReverse(reactText);
@@ -18,9 +18,9 @@ describe("reverse", function () {
         return promise.then(resultCssText => chai.expect(resultCssText.css).to.equal(expectedCssText));
     });
 
-    it("should do what if input is garbage?", function () {
+    it("should be able to convert non-standard but parsable json object", function () {
         // given
-        const reactText = JSON.stringify({"not valid": {"not recognizable": "some garbage"}});
+        const reactText = '{"not valid": {"not recognizable": "some garbage"}}';
 
         // when
         let promise = promiseReverse(reactText);
@@ -29,5 +29,22 @@ describe("reverse", function () {
         const stillCanTranslateToCssText = "not valid {\n    not recognizable: some garbage\n}";
 
         return promise.then(resultCssText => chai.expect(resultCssText.css).to.equal(stillCanTranslateToCssText));
+    });
+
+    it("should for non-parsable json object", function () {
+        // given
+        const reactText = "some random non-parsable text";
+
+        // when
+        let promise = promiseReverse(reactText);
+
+        // then
+        const expectedErrorMessage = "Unexpected token s in JSON at position 0";
+
+        return promise.catch(error =>
+            chai.expect(error)
+                .to.be.an('error')
+                .with.property('message', expectedErrorMessage)
+        );
     });
 });
