@@ -5,7 +5,7 @@ import {promiseReverse} from '../reverse';
 describe("reverse", function () {
     it("should reverse reactStyleObjText to css text", function () {
         // given
-        const reactText = JSON.stringify({"body": {"marginLeft": "5%"}});
+        const reactText = '{"body": {"marginLeft": "5%"}}';
 
         // when
         let promise = promiseReverse(reactText);
@@ -20,7 +20,7 @@ describe("reverse", function () {
 
     it("should be able to convert non-standard but parsable json object", function () {
         // given
-        const reactText = JSON.stringify({"not valid": {"not recognizable": "some garbage"}});
+        const reactText = '{"not valid": {"not recognizable": "some garbage"}}';
 
         // when
         let promise = promiseReverse(reactText);
