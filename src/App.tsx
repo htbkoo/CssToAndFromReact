@@ -4,7 +4,10 @@ import Input from "./Input";
 import {transform} from './transform';
 import {promiseReverse} from "./reverse";
 
-let initialStarterText = "";
+const ERROR_STYLE = {
+    "backgroundColor": "lightcoral"
+};
+const initialStarterText = "";
 
 type AppProps = {};
 type AppState = {
@@ -99,9 +102,8 @@ export default class App extends React.Component<AppProps, AppState> {
     }
 
     render() {
-        let outputCssStyle = this.state.error ? {
-            "backgroundColor": "lightcoral"
-        } : null;
+        let outputCssStyle = App.getCssStyleAccordingTo(this.state.error);
+        let inputCssStyle = App.getCssStyleAccordingTo(this.state.reverseError);
         console.log('state', this.state);
         let inputText = this.state.reverseError || this.state.inputText;
         let outputText = this.state.error || this.state.outputText;
@@ -123,5 +125,9 @@ export default class App extends React.Component<AppProps, AppState> {
                        type="checkbox" onChange={e => this.update(e.target.checked)}/> Format
             </div>
         );
+    }
+
+    private static getCssStyleAccordingTo(condition: any, styleIfTrue = ERROR_STYLE, styleIfFalse = null) {
+        return condition ? styleIfTrue : styleIfFalse;
     }
 }
