@@ -111,14 +111,14 @@ export default class App extends React.Component<AppProps, AppState> {
         return (
             <div style={{"textAlign": "center"}}>
                 <Input
-                    ref='inputCss' placeholder="Type or paste CSS here..." onChange={this.inputTextUpdate}
+                    ref='inputCss' placeholder="Type or paste CSS here..."
+                    onChange={this.inputTextUpdate}
                     value={inputText} style={inputCssStyle}
                 />
-                <textarea
+                <Input
                     ref='outputCss' placeholder="Type or paste React in-line style object here..."
                     onChange={this.outputTextUpdate}
-                    value={outputText}
-                    cols={40} rows={20} style={outputCssStyle}
+                    value={outputText} style={outputCssStyle}
                 />
                 <br/>
                 <input style={{"marginLeft": "266px"}} ref="useNewline" checked={this.state.shouldFormat}
