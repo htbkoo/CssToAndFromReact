@@ -15,26 +15,34 @@ CSS <-> React (in-line style) here: https://htbkoo.github.io/CssToAndFromReact/
     - [x] (Just personal preference) migrated to TypeScript
     - [x] Added automated test coverage
     - [x] Added functionality to transform from React back to CSS
-    - [ ] Update description in the page
+    - [x] Update description in the page
     - [ ] Full (at least enough) automated test coverage
     - [ ] More refactoring (more related to personal style)
 * An instance would be deployed to GitHub Page: https://htbkoo.github.io/CssToAndFromReact/
 
 ### How do I get set up? ###
 
-(WIP)
-* Summary of set up: "npm install" to download dependencies and the project is good to go.
+* Summary of set up: ```yarn``` / ```npm install``` to download dependencies and the project is good to go.
 * Configuration: N/A 
-* Dependencies: Listed at package.json
+* Dependencies: Listed at **package.json**
 * Database configuration: N/A
-* How to run tests: "npm run test"
-    * run unit tests only: "npm run test:unit"
-* Deployment instructions: N/A
-* How to start server: "npm run start"
+* How to run tests: ```yarn run test``` / ```npm run test```
+    * run unit tests only: ```yarn run test:unit``` / ```npm run test:unit```
+* Deployment instructions: 
+    * Currently the application is only deployed to GitHub page, with the source sitting in the **docs/** folder under **master** branch
+    * To update the GitHub page, do the following:
+        1. update the source code under **src/** or **public/**
+        2. ```yarn run ghpages:publish``` / ```npm run ghpages:publish```
+        3. ```git add``` everything under **docs/**
+        4. ```git commit```
+        5. ```git push```
+* How to start server: ```yarn run start``` / ```npm run start```
 
 ### Contribution guidelines ###
 
-* Writing tests: N/A
+* Writing tests: 
+    * Libraries / Frameworks used: [jest](https://facebook.github.io/jest/) (bundled in [react-scripts-ts](https://github.com/wmonk/create-react-app-typescript)) + [chai](http://www.chaijs.com/) + [enzyme](http://airbnb.io/enzyme/)
+    * All the tests are currently written in [TypeScript](https://www.typescriptlang.org/) but adding JavaScript tests should also work fine  
 * Code review: N/A
 * Other guidelines: N/A
 
