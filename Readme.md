@@ -43,8 +43,8 @@ CSS <-> React (in-line style) here: https://htbkoo.github.io/CssToAndFromReact/
 * Writing tests:
     * All tests are currently placed under **src/test/**
         * A small naming convention to 1) make it easier to run only unit tests and 2) allow tests navigation in IntelliJ: 
-            * Unit tests name pattern: <src>.test.ts(x)
-            * Other tests (e.g. integration, acceptance) name pattern: <src>.<test-type>.spec.ts(x)
+            * Unit tests name pattern: *src*.test.ts(x)
+            * Other tests (e.g. integration, acceptance) name pattern: *src*.*test-type*.spec.ts(x)
     * Libraries / Frameworks used: [jest](https://facebook.github.io/jest/) (bundled in [react-scripts-ts](https://github.com/wmonk/create-react-app-typescript)) + [chai](http://www.chaijs.com/) + [enzyme](http://airbnb.io/enzyme/)
     * All the tests are currently written in [TypeScript](https://www.typescriptlang.org/) but adding JavaScript tests should also work fine  
 * Code review: N/A
