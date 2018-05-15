@@ -28,7 +28,7 @@ export default class App extends React.Component<AppProps, AppState> {
 
         this.state = {
             inputText: initialStarterText,
-            outputText: "",
+            outputText: initialStarterText,
             shouldFormat: false
         }
     }
