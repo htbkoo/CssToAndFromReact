@@ -15,6 +15,7 @@ CSS <-> React (in-line style) here: https://htbkoo.github.io/CssToAndFromReact/
     - [x] (Just personal preference) migrated to TypeScript
     - [x] Added automated test coverage
     - [x] Added functionality to transform from React back to CSS
+        - using the [postcss](https://github.com/postcss/postcss) + [postcss-js](https://github.com/postcss/postcss-js) libraries
     - [x] Update description in the page
     - [ ] Full (at least enough) automated test coverage
     - [ ] More refactoring (more related to personal style)
@@ -56,4 +57,5 @@ CSS <-> React (in-line style) here: https://htbkoo.github.io/CssToAndFromReact/
 * Other community or team contact: N/A
 
 # Acknowledgement
-This repo is a fork of [staxmanade/CssToReact](https://github.com/staxmanade/CssToReact), so definitely kudos to [staxmanade](https://github.com/staxmanade) 
+* This repo is a fork of [staxmanade/CssToReact](https://github.com/staxmanade/CssToReact), so definitely kudos to [staxmanade](https://github.com/staxmanade)
+* The reverse transformation from React -> CSS is handled by [postcss](https://github.com/postcss/postcss) + [postcss-js](https://github.com/postcss/postcss-js) 
