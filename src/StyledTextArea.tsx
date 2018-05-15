@@ -1,15 +1,15 @@
 import React, {CSSProperties} from 'react';
 import ReactDOM from 'react-dom';
 
-type InputProps = {
+type StyledTextAreaProps = {
     value: string,
     placeholder: string,
     onChange: (event) => void,
     style?: CSSProperties
 };
-type InputState = {};
+type StyledTextAreaState = {};
 
-export default class Input extends React.Component<InputProps, InputState> {
+export default class StyledTextArea extends React.Component<StyledTextAreaProps, StyledTextAreaState> {
     componentDidUpdate(prevProps) {
         let node = ReactDOM.findDOMNode(this) as HTMLInputElement; // reference: https://github.com/Microsoft/TypeScript/issues/10453#issuecomment-301263769
         let oldLength = node.value.length;

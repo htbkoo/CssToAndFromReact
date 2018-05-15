@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Input from "./Input";
+import StyledTextArea from "./StyledTextArea";
 import {transform} from './transform';
 import {promiseReverse} from "./reverse";
 
@@ -110,12 +110,12 @@ export default class App extends React.Component<AppProps, AppState> {
 
         return (
             <div style={{"textAlign": "center"}}>
-                <Input
+                <StyledTextArea
                     ref='inputCss' placeholder="Type or paste CSS here..."
                     onChange={this.inputTextUpdate}
                     value={inputText} style={inputCssStyle}
                 />
-                <Input
+                <StyledTextArea
                     ref='outputCss' placeholder="Type or paste React in-line style object here..."
                     onChange={this.outputTextUpdate}
                     value={outputText} style={outputCssStyle}

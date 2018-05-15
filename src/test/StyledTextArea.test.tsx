@@ -1,14 +1,14 @@
 import {shallow} from "enzyme";
 import * as React from 'react';
 
-import Input from "../Input";
+import StyledTextArea from "../StyledTextArea";
 
 import {NO_OP} from "../utils/utils";
 
-describe("Input", function () {
+describe("StyledTextArea", function () {
     it("should shallow without error", function () {
         shallow(
-            <Input
+            <StyledTextArea
                 value="someValue"
                 placeholder="somePlaceholder"
                 onChange={NO_OP}
