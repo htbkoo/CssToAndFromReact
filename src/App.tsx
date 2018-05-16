@@ -1,8 +1,10 @@
 import React from 'react';
 
-import Input from "./Input";
+import StyledTextArea from "./StyledTextArea";
 import {transform} from './transform';
 import {promiseReverse} from "./reverse";
+
+import "./stylesheets/App.css";
 
 const ERROR_STYLE = {
     "backgroundColor": "lightcoral"
@@ -28,7 +30,7 @@ export default class App extends React.Component<AppProps, AppState> {
 
         this.state = {
             inputText: initialStarterText,
-            outputText: "",
+            outputText: initialStarterText,
             shouldFormat: false
         }
     }
@@ -109,16 +111,16 @@ export default class App extends React.Component<AppProps, AppState> {
         let outputText = this.state.error || this.state.outputText;
 
         return (
-            <div style={{"textAlign": "center"}}>
-                <Input
-                    ref='inputCss' placeholder="Type or paste CSS here..." onChange={this.inputTextUpdate}
+            <div className="App-Container">
+                <StyledTextArea
+                    ref='inputCss' placeholder="Type or paste CSS here..."
+                    onChange={this.inputTextUpdate}
                     value={inputText} style={inputCssStyle}
                 />
-                <textarea
+                <StyledTextArea
                     ref='outputCss' placeholder="Type or paste React in-line style object here..."
                     onChange={this.outputTextUpdate}
-                    value={outputText}
-                    cols={40} rows={20} style={outputCssStyle}
+                    value={outputText} style={outputCssStyle}
                 />
                 <br/>
                 <input style={{"marginLeft": "266px"}} ref="useNewline" checked={this.state.shouldFormat}
