@@ -108,21 +108,24 @@ export default class App extends React.Component<AppProps, AppState> {
         return (
             <div className="App-Container">
                 <StyledTextArea
-                    ref='inputCss'
                     placeholder="Type or paste CSS here..."
                     onChange={this.inputTextUpdate}
                     value={inputText}
                     isError={!!this.state.reverseError}
                 />
                 <StyledTextArea
-                    ref='outputCss' placeholder="Type or paste React in-line style object here..."
+                    placeholder="Type or paste React in-line style object here..."
                     onChange={this.outputTextUpdate}
                     value={outputText}
                     isError={!!this.state.error}
                 />
                 <br/>
-                <input style={{"marginLeft": "266px"}} ref="useNewline" checked={this.state.shouldFormat}
-                       type="checkbox" onChange={e => this.update(e.target.checked)}/> Format
+                <input
+                    className="checkbox-format"
+                    checked={this.state.shouldFormat}
+                    type="checkbox"
+                    onChange={e => this.update(e.target.checked)}
+                /> Format
             </div>
         );
     }
