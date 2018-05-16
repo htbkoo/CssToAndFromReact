@@ -34,9 +34,7 @@ export default class App extends React.Component<AppProps, AppState> {
     inputTextUpdate(e) {
         this.setState({
             inputText: e.target.value
-        }, () => {
-            this.update();
-        });
+        }, this.update);
     }
 
     outputTextUpdate(e) {
