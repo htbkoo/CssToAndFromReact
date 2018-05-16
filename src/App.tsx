@@ -18,7 +18,6 @@ type AppState = {
 };
 
 export default class App extends React.Component<AppProps, AppState> {
-
     constructor(props) {
         super(props);
         this.update = this.update.bind(this);
@@ -30,11 +29,6 @@ export default class App extends React.Component<AppProps, AppState> {
             outputText: initialStarterText,
             shouldFormat: false
         }
-    }
-
-    componentDidMount() {
-        // TODO: remove me...
-        this.update();
     }
 
     inputTextUpdate(e) {
