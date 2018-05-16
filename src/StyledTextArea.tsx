@@ -1,6 +1,8 @@
 import React, {CSSProperties} from 'react';
 import ReactDOM from 'react-dom';
 
+import "./stylesheets/StyledTextArea.css"
+
 type StyledTextAreaProps = {
     value: string,
     placeholder: string,
