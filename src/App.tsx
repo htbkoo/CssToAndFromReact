@@ -12,9 +12,9 @@ type AppProps = {};
 type AppState = {
     inputText: string,
     outputText: string,
+    shouldFormat: boolean,
     error?: string,
-    reverseError?: string,
-    shouldFormat: boolean
+    reverseError?: string
 };
 
 export default class App extends React.Component<AppProps, AppState> {
