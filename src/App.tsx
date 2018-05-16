@@ -4,6 +4,8 @@ import StyledTextArea from "./StyledTextArea";
 import {transform} from './transform';
 import {promiseReverse} from "./reverse";
 
+import "./stylesheets/App.css";
+
 const ERROR_STYLE = {
     "backgroundColor": "lightcoral"
 };
@@ -109,7 +111,7 @@ export default class App extends React.Component<AppProps, AppState> {
         let outputText = this.state.error || this.state.outputText;
 
         return (
-            <div style={{"textAlign": "center"}}>
+            <div className="App-Container">
                 <StyledTextArea
                     ref='inputCss' placeholder="Type or paste CSS here..."
                     onChange={this.inputTextUpdate}
