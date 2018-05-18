@@ -53,6 +53,22 @@ describe("App", function () {
             expect(wrapper.state("error")).toEqual(someError);
         }));
 
+        it("should, on empty input, reset error", sinonTest(function () {
+            // given
+            const emptyInput = "";
+
+            let wrapper = shallow(<App/>);
+            wrapper.setState({"error": new Error("some error")});
+
+            // when
+            let inputTextArea = wrapper.find(StyledTextArea).at(0);
+            inputTextArea.simulate("change", mockEvent(emptyInput));
+
+            // then
+            assertInput(wrapper, emptyInput);
+            expect(wrapper.state("error")).toBe(null);
+        }));
+
         function inputFrom(wrapper) {
             return wrapper.find(StyledTextArea).at(0);
         }
