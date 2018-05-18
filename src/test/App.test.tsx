@@ -28,11 +28,11 @@ describe("App", function () {
             let wrapper = shallow(<App/>);
 
             // when
-            let inputTextArea = wrapper.find(StyledTextArea).at(0);
-            inputTextArea.simulate("change", {target: {value: input}});
+            let inputTextArea = inputFrom(wrapper);
+            inputTextArea.simulate("change", mockEvent(input));
 
             // then
-            expect(wrapper.state("inputText")).toEqual(input);
+            assertInput(wrapper, input);
             const expectedOutput = JSON.stringify(result);
             expect(wrapper.state("outputText")).toEqual(expectedOutput);
         }));
@@ -49,8 +49,20 @@ describe("App", function () {
             inputTextArea.simulate("change", {target: {value: input}});
 
             // then
-            expect(wrapper.state("inputText")).toEqual(input);
+            assertInput(wrapper, input);
             expect(wrapper.state("error")).toEqual(someError);
         }));
+
+        function inputFrom(wrapper) {
+            return wrapper.find(StyledTextArea).at(0);
+        }
+
+        function mockEvent(input: string) {
+            return {target: {value: input}};
+        }
+
+        function assertInput(wrapper, input: string) {
+            expect(wrapper.state("inputText")).toEqual(input);
+        }
     });
 });
