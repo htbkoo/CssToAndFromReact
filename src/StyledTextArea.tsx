@@ -1,6 +1,8 @@
 import React, {CSSProperties} from 'react';
 import ReactDOM from 'react-dom';
 
+import "./stylesheets/StyledTextArea.css"
+
 type StyledTextAreaProps = {
     value: string,
     placeholder: string,
@@ -9,6 +11,8 @@ type StyledTextAreaProps = {
     isError?: boolean
 };
 type StyledTextAreaState = {};
+
+const TEXTAREA_ERROR_CLASS = "textarea-error";
 
 export default class StyledTextArea extends React.Component<StyledTextAreaProps, StyledTextAreaState> {
     static defaultProps: Partial<StyledTextAreaProps> = {
@@ -25,6 +29,7 @@ export default class StyledTextArea extends React.Component<StyledTextAreaProps,
     }
 
     render() {
-        return <textarea cols={40} rows={20} {...this.props} value={undefined}/>;
+        let className = this.props.isError ? TEXTAREA_ERROR_CLASS : "";
+        return <textarea cols={40} rows={20} {...this.props} value={undefined} className={className}/>;
     }
 }

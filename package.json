@@ -33,6 +33,8 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "mv": "^2.1.1",
     "rimraf": "^2.6.2",
+    "sinon": "^5.0.7",
+    "sinon-test": "^2.1.3",
     "typescript": "^2.8.3"
   },
   "homepage": "https://htbkoo.github.io/CssToAndFromReact"

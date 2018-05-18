@@ -6,22 +6,18 @@ import {promiseReverse} from "./reverse";
 
 import "./stylesheets/App.css";
 
-const ERROR_STYLE = {
-    "backgroundColor": "lightcoral"
-};
 const initialStarterText = "";
 
 type AppProps = {};
 type AppState = {
     inputText: string,
     outputText: string,
+    shouldFormat: boolean,
     error?: string,
-    reverseError?: string,
-    shouldFormat: boolean
+    reverseError?: string
 };
 
 export default class App extends React.Component<AppProps, AppState> {
-
     constructor(props) {
         super(props);
         this.update = this.update.bind(this);
@@ -35,17 +31,10 @@ export default class App extends React.Component<AppProps, AppState> {
         }
     }
 
-    componentDidMount() {
-        // TODO: remove me...
-        this.update();
-    }
-
     inputTextUpdate(e) {
         this.setState({
             inputText: e.target.value
-        }, () => {
-            this.update();
-        });
+        }, this.update);
     }
 
     outputTextUpdate(e) {
@@ -104,8 +93,6 @@ export default class App extends React.Component<AppProps, AppState> {
     }
 
     render() {
-        let outputCssStyle = App.getCssStyleAccordingTo(this.state.error);
-        let inputCssStyle = App.getCssStyleAccordingTo(this.state.reverseError);
         console.log('state', this.state);
         let inputText = this.state.reverseError || this.state.inputText;
         let outputText = this.state.error || this.state.outputText;
@@ -113,23 +100,25 @@ export default class App extends React.Component<AppProps, AppState> {
         return (
             <div className="App-Container">
                 <StyledTextArea
-                    ref='inputCss' placeholder="Type or paste CSS here..."
+                    placeholder="Type or paste CSS here..."
                     onChange={this.inputTextUpdate}
-                    value={inputText} style={inputCssStyle}
+                    value={inputText}
+                    isError={!!this.state.reverseError}
                 />
                 <StyledTextArea
-                    ref='outputCss' placeholder="Type or paste React in-line style object here..."
+                    placeholder="Type or paste React in-line style object here..."
                     onChange={this.outputTextUpdate}
-                    value={outputText} style={outputCssStyle}
+                    value={outputText}
+                    isError={!!this.state.error}
                 />
                 <br/>
-                <input style={{"marginLeft": "266px"}} ref="useNewline" checked={this.state.shouldFormat}
-                       type="checkbox" onChange={e => this.update(e.target.checked)}/> Format
+                <input
+                    className="checkbox-format"
+                    checked={this.state.shouldFormat}
+                    type="checkbox"
+                    onChange={e => this.update(e.target.checked)}
+                /> Format
             </div>
         );
-    }
-
-    private static getCssStyleAccordingTo(condition: any, styleIfTrue = ERROR_STYLE, styleIfFalse = null) {
-        return condition ? styleIfTrue : styleIfFalse;
     }
 }
