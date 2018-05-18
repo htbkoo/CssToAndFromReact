@@ -45,8 +45,8 @@ describe("App", function () {
             let wrapper = shallow(<App/>);
 
             // when
-            let inputTextArea = wrapper.find(StyledTextArea).at(0);
-            inputTextArea.simulate("change", {target: {value: input}});
+            let inputTextArea = inputFrom(wrapper);
+            inputTextArea.simulate("change", mockEvent(input));
 
             // then
             assertInput(wrapper, input);
@@ -61,7 +61,7 @@ describe("App", function () {
             wrapper.setState({"error": new Error("some error")});
 
             // when
-            let inputTextArea = wrapper.find(StyledTextArea).at(0);
+            let inputTextArea = inputFrom(wrapper);
             inputTextArea.simulate("change", mockEvent(emptyInput));
 
             // then
