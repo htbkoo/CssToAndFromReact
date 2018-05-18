@@ -36,5 +36,21 @@ describe("App", function () {
             const expectedOutput = JSON.stringify(result);
             expect(wrapper.state("outputText")).toEqual(expectedOutput);
         }));
+
+        it("should, on input invalid change, update output", sinonTest(function () {
+            // given
+            const input = "someInput", someError = new Error("some error");
+            this.stub(transform, "transform").withArgs(input).throws(someError);
+
+            let wrapper = shallow(<App/>);
+
+            // when
+            let inputTextArea = wrapper.find(StyledTextArea).at(0);
+            inputTextArea.simulate("change", {target: {value: input}});
+
+            // then
+            expect(wrapper.state("inputText")).toEqual(input);
+            expect(wrapper.state("error")).toEqual(someError);
+        }));
     });
 });
