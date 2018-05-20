@@ -5,6 +5,9 @@ import {sinonTest} from './utils/sinonWithTest'
 import App from '../App';
 import StyledTextArea from "../StyledTextArea";
 import * as transform from '../transform';
+import {CSS_VALUE} from "../__mocks__/reverse";
+
+jest.mock('../reverse');
 
 describe("App", function () {
     describe("construction", function () {
@@ -28,13 +31,76 @@ describe("App", function () {
             let wrapper = shallow(<App/>);
 
             // when
-            let inputTextArea = wrapper.find(StyledTextArea).at(0);
-            inputTextArea.simulate("change", {target: {value: input}});
+            let inputTextArea = inputFrom(wrapper);
+            inputTextArea.simulate("change", mockEvent(input));
 
             // then
-            expect(wrapper.state("inputText")).toEqual(input);
+            assertInput(wrapper, input);
             const expectedOutput = JSON.stringify(result);
             expect(wrapper.state("outputText")).toEqual(expectedOutput);
         }));
+
+        it("should, on input invalid change, update output", sinonTest(function () {
+            // given
+            const input = "someInput", someError = new Error("some error");
+            this.stub(transform, "transform").withArgs(input).throws(someError);
+
+            let wrapper = shallow(<App/>);
+
+            // when
+            let inputTextArea = inputFrom(wrapper);
+            inputTextArea.simulate("change", mockEvent(input));
+
+            // then
+            assertInput(wrapper, input);
+            expect(wrapper.state("error")).toEqual(someError);
+        }));
+
+        it("should, on empty input, reset error", sinonTest(function () {
+            // given
+            const emptyInput = "";
+
+            let wrapper = shallow(<App/>);
+            wrapper.setState({"error": new Error("some error")});
+
+            // when
+            let inputTextArea = inputFrom(wrapper);
+            inputTextArea.simulate("change", mockEvent(emptyInput));
+
+            // then
+            assertInput(wrapper, emptyInput);
+            expect(wrapper.state("error")).toBe(null);
+        }));
+
+        function inputFrom(wrapper) {
+            return wrapper.find(StyledTextArea).at(0);
+        }
+
+        function assertInput(wrapper, input: string) {
+            expect(wrapper.state("inputText")).toEqual(input);
+        }
     });
+
+    describe("reverse transformation", function () {
+        it("should, on output valid change, update input", function (done) {
+            // given
+            const output = "someOutput";
+            let wrapper = shallow(<App/>);
+
+            // when
+            let outputTextArea = wrapper.find(StyledTextArea).at(1);
+            outputTextArea.simulate("change", mockEvent(output));
+
+            // then
+            setImmediate(() => {
+                expect(wrapper.state("outputText")).toEqual(output);
+                expect(wrapper.state("inputText")).toEqual(CSS_VALUE);
+                done();
+            });
+        });
+    });
+
+    function mockEvent(input: string) {
+        return {target: {value: input}};
+    }
 });
