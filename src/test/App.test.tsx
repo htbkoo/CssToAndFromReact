@@ -5,6 +5,9 @@ import {sinonTest} from './utils/sinonWithTest'
 import App from '../App';
 import StyledTextArea from "../StyledTextArea";
 import * as transform from '../transform';
+import {CSS_VALUE} from "../__mocks__/reverse";
+
+jest.mock('../reverse');
 
 describe("App", function () {
     describe("construction", function () {
@@ -73,12 +76,31 @@ describe("App", function () {
             return wrapper.find(StyledTextArea).at(0);
         }
 
-        function mockEvent(input: string) {
-            return {target: {value: input}};
-        }
-
         function assertInput(wrapper, input: string) {
             expect(wrapper.state("inputText")).toEqual(input);
         }
     });
+
+    describe("reverse transformation", function () {
+        it("should, on output valid change, update input", function (done) {
+            // given
+            const output = "someOutput";
+            let wrapper = shallow(<App/>);
+
+            // when
+            let outputTextArea = wrapper.find(StyledTextArea).at(1);
+            outputTextArea.simulate("change", mockEvent(output));
+
+            // then
+            setImmediate(() => {
+                expect(wrapper.state("outputText")).toEqual(output);
+                expect(wrapper.state("inputText")).toEqual(CSS_VALUE);
+                done();
+            });
+        });
+    });
+
+    function mockEvent(input: string) {
+        return {target: {value: input}};
+    }
 });
