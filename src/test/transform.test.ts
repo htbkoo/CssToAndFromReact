@@ -14,12 +14,23 @@ describe("transform", function () {
 
     it("should throw Error for non-parsable json object", function () {
         // given
-        const reactText = "some random non-parsable text";
+        const invalidText = "some random non-parsable text";
 
         // when
-        let failedTransformation = () => transform(reactText);
+        let failedTransformation = () => transform(invalidText);
 
         // then
         expect(failedTransformation).toThrow();
+    });
+
+    it("should throw Error for empty input", function () {
+        // given
+        const emptyInput = "";
+
+        // when
+        let failedTransformation = () => transform(emptyInput);
+
+        // then
+        expect(failedTransformation).toThrow('missing css text to transform');
     });
 });
