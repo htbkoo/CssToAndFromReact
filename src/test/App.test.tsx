@@ -98,6 +98,21 @@ describe("App", function () {
                 done();
             });
         });
+
+        it("should, on empty output, reset reverseError", function () {
+            // given
+            const emptyOutput = "", someError = new Error("some error");
+            let wrapper = shallow(<App/>);
+            wrapper.setState({reverseError: someError});
+
+            // when
+            let outputTextArea = wrapper.find(StyledTextArea).at(1);
+            outputTextArea.simulate("change", mockEvent(emptyOutput));
+
+            // then
+            expect(wrapper.state("outputText")).toEqual(emptyOutput);
+            expect(wrapper.state("reverseError")).toEqual(null);
+        });
     });
 
     function mockEvent(input: string) {
