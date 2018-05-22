@@ -1,18 +1,23 @@
 import {transform} from '../transform';
 
 describe("transform", function () {
-    it("should reverse reactStyleObjText to css text", function () {
-        // given
-        const cssText = `body {margin-left: 5%}`, reactObject = {"body": {"marginLeft": "5%"}};
+    [
+        {
+            cssText: `body {margin-left: 5%}`,
+            reactObject: {"body": {"marginLeft": "5%"}}
+        }
+    ].forEach(({cssText, reactObject}) =>
+        it(`should transform css text (${cssText}) to reactStyleObj(${JSON.stringify(reactObject)})`, function () {
+            // given
+            // when
+            let result = transform(cssText);
 
-        // when
-        let result = transform(cssText);
+            // then
+            expect(result).toEqual(reactObject);
+        })
+    );
 
-        // then
-        expect(result).toEqual(reactObject);
-    });
-
-    it("should throw Error for non-parsable json object", function () {
+    it("should throw Error for non-parsable text", function () {
         // given
         const invalidText = "some random non-parsable text";
 
