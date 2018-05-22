@@ -11,4 +11,15 @@ describe("transform", function () {
         // then
         expect(result).toEqual(reactObject);
     });
+
+    it("should throw Error for non-parsable json object", function () {
+        // given
+        const reactText = "some random non-parsable text";
+
+        // when
+        let failedTransformation = () => transform(reactText);
+
+        // then
+        expect(failedTransformation).toThrow();
+    });
 });
