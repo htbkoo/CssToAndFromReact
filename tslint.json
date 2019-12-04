@@ -1,6 +1,12 @@
 {
     "extends": ["tslint-react"],
     "defaultSeverity": "warning",
+    "linterOptions": {
+        "exclude": [
+            "docs/**",
+            "bin/**"
+        ]
+    },
     "rules": {
         "align": [
             true,
@@ -54,7 +60,6 @@
         "no-switch-case-fall-through": true,
         "no-trailing-whitespace": false,
         "no-unused-expression": true,
-        "no-use-before-declare": true,
         "one-line": [
             true,
             "check-catch",
