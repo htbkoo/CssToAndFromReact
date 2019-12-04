@@ -17,7 +17,8 @@
     "suppressImplicitAnyIndexErrors": false,
     "noUnusedLocals": false,
     "baseUrl": ".",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true
   },
   "exclude": [
     "node_modules",
