@@ -18,6 +18,15 @@ type AppState = {
     reverseError?: string
 };
 
+enum GA_TRACKING_CATEGORIES {
+    TRANSLATION = "Translation",
+}
+
+enum TRANSLATION_ACTIONS {
+    TO_CSS = "To CSS",
+    FROM_CSS = "From CSS",
+}
+
 export default class App extends React.Component<AppProps, AppState> {
     private readonly gAManager: GoogleAnalyticsManager = new GoogleAnalyticsManager();
 
@@ -61,6 +70,9 @@ export default class App extends React.Component<AppProps, AppState> {
                 });
                 return;
             }
+
+            this.trackTranslation(TRANSLATION_ACTIONS.FROM_CSS);
+
             return promiseReverse(outputText)
                 .then(result => {
                     this.setState({
@@ -87,6 +99,8 @@ export default class App extends React.Component<AppProps, AppState> {
             });
             return;
         }
+
+        this.trackTranslation(TRANSLATION_ACTIONS.TO_CSS);
 
         try {
             let transformed = transform(this.state.inputText);
@@ -132,5 +146,12 @@ export default class App extends React.Component<AppProps, AppState> {
                 /> Format
             </div>
         );
+    }
+
+    private trackTranslation(action: TRANSLATION_ACTIONS) {
+        this.gAManager.event({
+            category: GA_TRACKING_CATEGORIES.TRANSLATION,
+            action
+        });
     }
 }
