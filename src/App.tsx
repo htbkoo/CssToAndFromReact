@@ -22,7 +22,7 @@ export default class App extends React.Component<AppProps, AppState> {
     private readonly gAManager: GoogleAnalyticsManager = new GoogleAnalyticsManager();
 
     componentDidMount(): void {
-        if (typeof window!=="undefined") {
+        if (typeof window !== "undefined") {
             const path = window.location.pathname + window.location.search;
             this.gAManager.pageview(path);
         }
