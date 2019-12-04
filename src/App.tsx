@@ -1,10 +1,11 @@
 import React from 'react';
 
+import "./stylesheets/App.css";
+
 import StyledTextArea from "./StyledTextArea";
 import {transform} from './transform';
 import {promiseReverse} from "./reverse";
-
-import "./stylesheets/App.css";
+import GoogleAnalyticsManager from "./services/GoogleAnalyticsManager";
 
 const initialStarterText = "";
 
@@ -18,6 +19,15 @@ type AppState = {
 };
 
 export default class App extends React.Component<AppProps, AppState> {
+    private readonly gAManager: GoogleAnalyticsManager = new GoogleAnalyticsManager();
+
+    componentDidMount(): void {
+        if (typeof window!=="undefined") {
+            const path = window.location.pathname + window.location.search;
+            this.gAManager.pageview(path);
+        }
+    }
+
     constructor(props) {
         super(props);
         this.update = this.update.bind(this);
@@ -28,7 +38,9 @@ export default class App extends React.Component<AppProps, AppState> {
             inputText: initialStarterText,
             outputText: initialStarterText,
             shouldFormat: false
-        }
+        };
+
+        this.gAManager.init();
     }
 
     inputTextUpdate(e) {
