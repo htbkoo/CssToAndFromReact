@@ -1,4 +1,4 @@
-import ReactGA from 'react-ga';
+import ReactGA, {EventArgs} from 'react-ga';
 
 export default class GoogleAnalyticsManager {
     private _isInitialized: boolean = false;
@@ -21,16 +21,30 @@ export default class GoogleAnalyticsManager {
     }
 
     public pageview(path: string) {
-        if (this.isInitialized()) {
-            console.log(`pageview at path: ${path}`);
-            ReactGA.pageview(path);
-        } else {
-            console.warn(`Not initialized - not going to set pageview for path: "${path}"`);
-        }
+        this.safeReactGaTrack({
+            track: () => ReactGA.pageview(path),
+            trackDescription: `pageview at path: ${path}`
+        });
+    }
+
+    public event(args: EventArgs) {
+        this.safeReactGaTrack({
+            track: () => ReactGA.event(args),
+            trackDescription: `event with args: ${JSON.stringify(args)}`,
+        });
     }
 
     public isInitialized(): boolean {
         return this._isInitialized;
+    }
+
+    private safeReactGaTrack({track, trackDescription}: { track: () => any, trackDescription: string }) {
+        if (this.isInitialized()) {
+            console.log(trackDescription);
+            track();
+        } else {
+            console.warn(`Not initialized - not going to send ${trackDescription}`);
+        }
     }
 }
 
