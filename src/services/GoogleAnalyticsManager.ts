@@ -25,7 +25,7 @@ export default class GoogleAnalyticsManager {
             console.log(`pageview at path: ${path}`);
             ReactGA.pageview(path);
         } else {
-            console.warn(`Not initialized - not going to set pageview for path: "${path}"`);
+            console.warn(`Not initialized - not going to send pageview for path: "${path}"`);
         }
     }
 
