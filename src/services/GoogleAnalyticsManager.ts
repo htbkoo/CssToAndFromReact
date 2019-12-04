@@ -1,4 +1,4 @@
-import ReactGA from 'react-ga';
+import ReactGA, {EventArgs} from 'react-ga';
 
 export default class GoogleAnalyticsManager {
     private _isInitialized: boolean = false;
@@ -26,6 +26,15 @@ export default class GoogleAnalyticsManager {
             ReactGA.pageview(path);
         } else {
             console.warn(`Not initialized - not going to send pageview for path: "${path}"`);
+        }
+    }
+
+    public event(args: EventArgs) {
+        if (this.isInitialized()) {
+            console.log(`event with args: ${args}`);
+            ReactGA.event(args);
+        } else {
+            console.warn(`Not initialized - not going to send event with args: "${args}"`);
         }
     }
 

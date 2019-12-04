@@ -83,6 +83,45 @@ describe("GoogleAnalyticsManager", function () {
         });
     });
 
+    describe("event", function () {
+        beforeEach(function () {
+            ReactGA.event = jest.fn();
+        });
+
+        it("should fire event if initialized", function () {
+            // given
+            const manager = new GoogleAnalyticsManager();
+            setIsInitialized(manager, true);
+
+            const args = {
+                category: 'Translation',
+                action: 'From CSS'
+            };
+
+            // when
+            manager.event(args);
+
+            // then
+            expect(ReactGA.event).toBeCalledWith(args);
+        });
+
+        it("should not fire event if not initialized", function () {
+            // given
+            const manager = new GoogleAnalyticsManager();
+            setIsInitialized(manager, false);
+
+            // when
+            const args = {
+                category: 'Translation',
+                action: 'To CSS'
+            };
+            manager.event(args);
+
+            // then
+            expect(ReactGA.event).not.toBeCalled();
+        });
+    });
+
     function backupProcessEnv() {
         processEnv = {...process.env};
     }
