@@ -73,7 +73,7 @@ export default class App extends React.Component<AppProps, AppState> {
 
             return promiseReverse(outputText)
                 .then(result => {
-                    this.trackTranslation(TRANSLATION_ACTIONS.FROM_CSS);
+                    this.trackTranslation(TRANSLATION_ACTIONS.TO_CSS);
 
                     this.setState({
                         inputText: result.css,
@@ -105,7 +105,7 @@ export default class App extends React.Component<AppProps, AppState> {
 
             let result = JSON.stringify(transformed, null, shouldFormat ? 2 : 0);
 
-            this.trackTranslation(TRANSLATION_ACTIONS.TO_CSS);
+            this.trackTranslation(TRANSLATION_ACTIONS.FROM_CSS);
 
             this.setState({
                 outputText: result,
