@@ -71,10 +71,10 @@ export default class App extends React.Component<AppProps, AppState> {
                 return;
             }
 
-            this.trackTranslation(TRANSLATION_ACTIONS.FROM_CSS);
-
             return promiseReverse(outputText)
                 .then(result => {
+                    this.trackTranslation(TRANSLATION_ACTIONS.TO_CSS);
+
                     this.setState({
                         inputText: result.css,
                         reverseError: null
@@ -100,12 +100,13 @@ export default class App extends React.Component<AppProps, AppState> {
             return;
         }
 
-        this.trackTranslation(TRANSLATION_ACTIONS.TO_CSS);
-
         try {
             let transformed = transform(this.state.inputText);
 
             let result = JSON.stringify(transformed, null, shouldFormat ? 2 : 0);
+
+            this.trackTranslation(TRANSLATION_ACTIONS.FROM_CSS);
+
             this.setState({
                 outputText: result,
                 error: null,
