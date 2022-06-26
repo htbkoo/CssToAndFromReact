@@ -15,7 +15,7 @@
   "dependencies": {
     "autoprefixer": "^8.4.1",
     "css": "^2.2.1",
-    "postcss": "^6.0.22",
+    "postcss": "^7.0.36",
     "postcss-js": "^1.0.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
