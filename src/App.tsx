@@ -140,11 +140,13 @@ export default class App extends React.Component<AppProps, AppState> {
                 />
                 <br/>
                 <input
+                    id="checkbox-format"
                     className="checkbox-format"
                     checked={this.state.shouldFormat}
                     type="checkbox"
                     onChange={e => this.update(e.target.checked)}
-                /> Format
+                />
+                <label htmlFor="checkbox-format">Format</label>
             </div>
         );
     }
