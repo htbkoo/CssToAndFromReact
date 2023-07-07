@@ -35,6 +35,32 @@
     <!--[if lt IE 9]>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
     <![endif]-->
+
+    <!-- Google Analytics 4 - BEGIN -->
+    <script src="https://www.googletagmanager.com/gtag/js?id=%REACT_APP_GOOGLE_ANALYTICS_GA_MEASUREMENT_ID%">
+    </script>
+    <script id="google-analytics">
+        const isGoogleAnalyticsTrackingEnabled = "true" === "%REACT_APP_GOOGLE_ANALYTICS_TRACKING_ENABLED%".toLowerCase();
+        const gaMeasurementId = "%REACT_APP_GOOGLE_ANALYTICS_GA_MEASUREMENT_ID%";
+
+        if (isGoogleAnalyticsTrackingEnabled && typeof gaMeasurementId !== "undefined") {
+          console.log("Google Analytics tracking enabled and gaMeasurementId is defined, running Google Analytics gtag codes now");
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', '%REACT_APP_GOOGLE_ANALYTICS_GA_MEASUREMENT_ID%');
+        } else {
+          if (!isGoogleAnalyticsTrackingEnabled) {
+            console.log("Google Analytics gaMeasurementId is defined but Google Analytics tracking is disabled, thus not initializing");
+          } else {
+            console.log("Google Analytics gaMeasurementId is not defined, thus not initializing");
+          }
+        }
+    </script>
+    <!-- Google Analytics 4 - END -->
+
 </head>
 
 <body>
