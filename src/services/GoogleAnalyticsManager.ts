@@ -6,7 +6,7 @@ export default class GoogleAnalyticsManager {
     }
 
     public event(eventName: string, eventParams: Record<string, string> = {}) {
-        const trackDescription = `event '${eventName}'${eventParams ? `with args: ${JSON.stringify(eventParams)}` : ''}`;
+        const trackDescription = `event '${eventName}'${eventParams ? `, with args: ${JSON.stringify(eventParams)}` : ''}`;
         if (this.isInitialized()) {
             console.log(trackDescription);
             window['gtag']('event', eventName, eventParams);
