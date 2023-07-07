@@ -18,11 +18,11 @@ type AppState = {
     reverseError?: string
 };
 
-enum GA_TRACKING_CATEGORIES {
-    TRANSLATION = "Translation",
+enum GA_TRACKING_EVENT_NAMES {
+    TRANSLATION = "css_to_and_from_react__Translation",
 }
 
-enum TRANSLATION_ACTIONS {
+enum GA_TRACKING_EVENT_PARAMS_TRANSLATION_ACTIONS {
     TO_CSS = "To CSS",
     FROM_CSS = "From CSS",
 }
@@ -64,7 +64,7 @@ export default class App extends React.Component<AppProps, AppState> {
 
             return promiseReverse(outputText)
                 .then(result => {
-                    this.trackTranslation(TRANSLATION_ACTIONS.TO_CSS);
+                    this.trackTranslation(GA_TRACKING_EVENT_PARAMS_TRANSLATION_ACTIONS.TO_CSS);
 
                     this.setState({
                         inputText: result.css,
@@ -96,7 +96,7 @@ export default class App extends React.Component<AppProps, AppState> {
 
             let result = JSON.stringify(transformed, null, shouldFormat ? 2 : 0);
 
-            this.trackTranslation(TRANSLATION_ACTIONS.FROM_CSS);
+            this.trackTranslation(GA_TRACKING_EVENT_PARAMS_TRANSLATION_ACTIONS.FROM_CSS);
 
             this.setState({
                 outputText: result,
@@ -142,8 +142,8 @@ export default class App extends React.Component<AppProps, AppState> {
         );
     }
 
-    private trackTranslation(action: TRANSLATION_ACTIONS) {
-        this.gAManager.event(GA_TRACKING_CATEGORIES.TRANSLATION, {
+    private trackTranslation(action: GA_TRACKING_EVENT_PARAMS_TRANSLATION_ACTIONS) {
+        this.gAManager.event(GA_TRACKING_EVENT_NAMES.TRANSLATION, {
             action,
         });
     }
