@@ -3,8 +3,8 @@ import React from 'react';
 import "./stylesheets/App.css";
 
 import StyledTextArea from "./StyledTextArea";
-import {transform} from './transform';
-import {promiseReverse} from "./reverse";
+import { transform } from './transform';
+import { promiseReverse } from "./reverse";
 import GoogleAnalyticsManager from "./services/GoogleAnalyticsManager";
 
 const initialStarterText = "";
@@ -18,24 +18,17 @@ type AppState = {
     reverseError?: string
 };
 
-enum GA_TRACKING_CATEGORIES {
-    TRANSLATION = "Translation",
+enum GA_TRACKING_EVENT_NAMES {
+    TRANSLATION = "css_to_and_from_react__Translation",
 }
 
-enum TRANSLATION_ACTIONS {
+enum GA_TRACKING_EVENT_PARAMS_TRANSLATION_ACTIONS {
     TO_CSS = "To CSS",
     FROM_CSS = "From CSS",
 }
 
 export default class App extends React.Component<AppProps, AppState> {
     private readonly gAManager: GoogleAnalyticsManager = new GoogleAnalyticsManager();
-
-    componentDidMount(): void {
-        if (typeof window !== "undefined") {
-            const path = window.location.pathname + window.location.search;
-            this.gAManager.pageview(path);
-        }
-    }
 
     constructor(props) {
         super(props);
@@ -48,8 +41,6 @@ export default class App extends React.Component<AppProps, AppState> {
             outputText: initialStarterText,
             shouldFormat: false
         };
-
-        this.gAManager.init();
     }
 
     inputTextUpdate(e) {
@@ -73,7 +64,7 @@ export default class App extends React.Component<AppProps, AppState> {
 
             return promiseReverse(outputText)
                 .then(result => {
-                    this.trackTranslation(TRANSLATION_ACTIONS.TO_CSS);
+                    this.trackTranslation(GA_TRACKING_EVENT_PARAMS_TRANSLATION_ACTIONS.TO_CSS);
 
                     this.setState({
                         inputText: result.css,
@@ -105,7 +96,7 @@ export default class App extends React.Component<AppProps, AppState> {
 
             let result = JSON.stringify(transformed, null, shouldFormat ? 2 : 0);
 
-            this.trackTranslation(TRANSLATION_ACTIONS.FROM_CSS);
+            this.trackTranslation(GA_TRACKING_EVENT_PARAMS_TRANSLATION_ACTIONS.FROM_CSS);
 
             this.setState({
                 outputText: result,
@@ -138,7 +129,7 @@ export default class App extends React.Component<AppProps, AppState> {
                     value={outputText}
                     isError={!!this.state.error}
                 />
-                <br/>
+                <br />
                 <input
                     id="checkbox-format"
                     className="checkbox-format"
@@ -151,10 +142,9 @@ export default class App extends React.Component<AppProps, AppState> {
         );
     }
 
-    private trackTranslation(action: TRANSLATION_ACTIONS) {
-        this.gAManager.event({
-            category: GA_TRACKING_CATEGORIES.TRANSLATION,
-            action
+    private trackTranslation(action: GA_TRACKING_EVENT_PARAMS_TRANSLATION_ACTIONS) {
+        this.gAManager.event(GA_TRACKING_EVENT_NAMES.TRANSLATION, {
+            action,
         });
     }
 }

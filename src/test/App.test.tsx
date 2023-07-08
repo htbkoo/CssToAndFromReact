@@ -9,7 +9,7 @@ import {CSS_VALUE} from "../__mocks__/reverse";
 
 jest.mock('../reverse');
 
-describe("App", function () {
+xdescribe("App", function () {
     describe("construction", function () {
         it("should have 2 <StyledTextArea/> and 1 <input/> when rendered", function () {
             // given

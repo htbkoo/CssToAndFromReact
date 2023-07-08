@@ -1,49 +1,31 @@
-import ReactGA, {EventArgs} from 'react-ga';
-
 export default class GoogleAnalyticsManager {
-    private _isInitialized: boolean = false;
+    public pageview(path: string) {
+        this.event('page_view', {
+            page_location: path
+        });
+    }
 
-    public init() {
-        const isGoogleAnalyticsTrackingEnabled = isTrue(process.env.REACT_APP_GOOGLE_ANALYTICS_TRACKING_ENABLED);
-        const trackingId = process.env.REACT_APP_GOOGLE_ANALYTICS_TRACKING_ID;
-
-        if (isGoogleAnalyticsTrackingEnabled && trackingId) {
-            console.log("Google Analytics tracking enabled and trackingId is defined, initializing Google Analytics module now");
-            ReactGA.initialize(trackingId);
-            this._isInitialized = true;
+    public event(eventName: string, eventParams: Record<string, string> = {}) {
+        const trackDescription = `event '${eventName}'${eventParams ? `, with args: ${JSON.stringify(eventParams)}` : ''}`;
+        if (this.isInitialized()) {
+            console.log(trackDescription);
+            window['gtag']('event', eventName, eventParams);
         } else {
-            if (!isGoogleAnalyticsTrackingEnabled) {
-                console.log("Google Analytics tracking disabled and trackingId is defined, thus not initializing");
-            } else {
-                console.log("Google Analytics trackingId is not defined, thus not initializing");
-            }
+            console.warn(`Not initialized - not going to send ${trackDescription}`);
         }
     }
 
-    public pageview(path: string) {
-        this.safeReactGaTrack({
-            track: () => ReactGA.pageview(path),
-            trackDescription: `pageview at path: ${path}`
-        });
-    }
-
-    public event(args: EventArgs) {
-        this.safeReactGaTrack({
-            track: () => ReactGA.event(args),
-            trackDescription: `event with args: ${JSON.stringify(args)}`,
-        });
-    }
-
     public isInitialized(): boolean {
-        return this._isInitialized;
-    }
+        const isGoogleAnalyticsTrackingEnabled = isTrue(process.env.REACT_APP_GOOGLE_ANALYTICS_TRACKING_ENABLED);
+        const gaMeasurementId = process.env.REACT_APP_GOOGLE_ANALYTICS_GA_MEASUREMENT_ID;
+        const isGtagFunctionDefined = typeof window['gtag'] === "function";
 
-    private safeReactGaTrack({track, trackDescription}: { track: () => any, trackDescription: string }) {
-        if (this.isInitialized()) {
-            console.log(trackDescription);
-            track();
+        if (isGoogleAnalyticsTrackingEnabled && gaMeasurementId && isGtagFunctionDefined) {
+            console.log("Google Analytics tracking enabled and gaMeasurementId is defined, Google Analytics tracking is available");
+            return true;
         } else {
-            console.warn(`Not initialized - not going to send ${trackDescription}`);
+            console.log(`Google Analytics tracking not available, details: isGoogleAnalyticsTrackingEnabled=${isGoogleAnalyticsTrackingEnabled}, isGtagFunctionDefined=${isGtagFunctionDefined}}`);
+            return false;
         }
     }
 }
