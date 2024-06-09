@@ -4,6 +4,9 @@
   "description": "A small util to convert between CSS and React styles object",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
   "scripts": {
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
