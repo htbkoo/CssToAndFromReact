@@ -1,4 +1,4 @@
-import cssParser from "css";
+import cssParser, { Declaration, Media, Rule, StyleRules } from "css";
 
 type HasBootstrapWithCssClass = {
   bootstrapWithCssClass: any;
@@ -9,18 +9,26 @@ type HasBootstrapWithCssClass = {
 // https://github.com/raphamorim/native-css
 //
 
-function transformRules(self, rules, result) {
+type Rules = StyleRules["rules"];
+type DeclarationOrComment = Rule["declarations"][number];
+
+const isMediaRule = (rule): rule is Media => rule.type === "media";
+const isRule = (rule): rule is Rule => rule.type === "rule";
+const isDeclaration = (declaration: DeclarationOrComment): declaration is Declaration =>
+  declaration.type === "declaration";
+
+function transformRules(self, rules: Rules, result) {
   rules.forEach(function (rule) {
     var obj = {};
-    if (rule.type === "media") {
+    if (isMediaRule(rule)) {
       var name = mediaNameGenerator(rule.media);
       var media = (result[name] = result[name] || {
         __expression__: rule.media,
       });
       transformRules(self, rule.rules, media);
-    } else if (rule.type === "rule") {
+    } else if (isRule(rule)) {
       rule.declarations.forEach(function (declaration) {
-        if (declaration.type === "declaration") {
+        if (isDeclaration(declaration)) {
           var cleanProperty = cleanPropertyName(declaration.property);
           obj[cleanProperty] = declaration.value;
         }
