@@ -12,8 +12,8 @@
     "url": "https://github.com/htbkoo/CssToAndFromReact.git"
   },
   "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
+    "build:copy": "node ./bin/build",
+    "build": "node ./bin/rename -s public -d build",
     "test": "cross-env CI=true react-scripts-ts test --env=jsdom",
     "test:unit": "cross-env CI=true react-scripts-ts test --testPathPattern=.*/src/.*.test.tsx?$",
     "test-watch": "react-scripts-ts test --env=jsdom",
