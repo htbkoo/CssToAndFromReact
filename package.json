@@ -1,6 +1,6 @@
 {
   "name": "css-to-and-from-react",
-  "version": "0.6.4",
+  "version": "0.7.0",
   "description": "A small util to convert between CSS and React styles object",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -12,16 +12,10 @@
     "url": "https://github.com/htbkoo/CssToAndFromReact.git"
   },
   "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
     "test": "cross-env CI=true react-scripts-ts test --env=jsdom",
     "test:unit": "cross-env CI=true react-scripts-ts test --testPathPattern=.*/src/.*.test.tsx?$",
     "test-watch": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
-    "----ghpages----": "----------------",
-    "ghpages:publish": "npm run build && npm run ghpages:clean && npm run ghpages:rename",
-    "ghpages:clean": "rimraf ./docs",
-    "ghpages:rename": "node ./bin/rename -s build -d docs",
     "----npm----": "----------------",
     "npm:build": "tsc -p ./tsconfig-npm.json",
     "npm:clean": "rimraf dist",
@@ -30,7 +24,7 @@
   "dependencies": {
     "autoprefixer": "^8.4.1",
     "css": "^2.2.1",
-    "postcss": "^7.0.36",
+    "postcss": "^8.4.38",
     "postcss-js": "^1.0.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
