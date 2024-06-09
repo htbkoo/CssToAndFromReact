@@ -12,16 +12,10 @@
     "url": "https://github.com/htbkoo/CssToAndFromReact.git"
   },
   "scripts": {
-    "build:copy": "node ./bin/build",
-    "build": "node ./bin/rename -s public -d build",
     "test": "cross-env CI=true react-scripts-ts test --env=jsdom",
     "test:unit": "cross-env CI=true react-scripts-ts test --testPathPattern=.*/src/.*.test.tsx?$",
     "test-watch": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
-    "----ghpages----": "----------------",
-    "ghpages:publish": "npm run build && npm run ghpages:clean && npm run ghpages:rename",
-    "ghpages:clean": "rimraf ./docs",
-    "ghpages:rename": "node ./bin/rename -s build -d docs",
     "----npm----": "----------------",
     "npm:build": "tsc -p ./tsconfig-npm.json",
     "npm:clean": "rimraf dist",
