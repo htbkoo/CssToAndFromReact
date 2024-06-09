@@ -39,7 +39,7 @@ describe("reverse", function () {
         let promise = promiseReverse(reactText);
 
         // then
-        const expectedErrorMessage = "Unexpected token s in JSON at position 0";
+        const expectedErrorMessage = "Unexpected token 's', \"some rando\"... is not valid JSON";
 
         return promise.catch(error =>
             chai.expect(error)
