@@ -1,4 +1,4 @@
-import postcss from "postcss";
+import { default as postcss }  from "postcss";
 // noinspection TypeScriptCheckImport
 import postcssJs from "postcss-js";
 import autoprefixer from "autoprefixer";
