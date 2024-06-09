@@ -48,8 +48,5 @@
     "typescript": "^2.8.3",
     "react-scripts-ts": "2.15.1"
   },
-  "homepage": "https://htbkoo.github.io/CssToAndFromReact",
-  "engines": {
-    "node": ">=16 <17"
-  }
+  "homepage": "https://htbkoo.github.io/CssToAndFromReact"
 }
