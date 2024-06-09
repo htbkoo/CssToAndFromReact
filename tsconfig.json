@@ -27,6 +27,11 @@
     "acceptance-tests",
     "webpack",
     "jest",
-    "src/setupTests.ts"
+    "src/setupTests.ts",
+    "__mocks__",
+    "./index.ts",
+    "dist",
+    "docs",
+    "bin"
   ]
 }
