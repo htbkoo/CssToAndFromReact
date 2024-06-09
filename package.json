@@ -1,6 +1,6 @@
 {
   "name": "css-to-and-from-react",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "A small util to convert between CSS and React styles object",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
