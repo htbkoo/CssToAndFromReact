@@ -54,7 +54,7 @@ var nameGenerator = function (name) {
     return name;
 };
 
-export function transform (inputCssText) {
+export function transform (inputCssText: string) {
 
   if(!inputCssText) {
     throw new Error('missing css text to transform');
