@@ -8,7 +8,7 @@
 
 ### TL;DR ###
 
-CSS <-> React (in-line style) here: https://htbkoo.github.io/CssToAndFromReact/ 
+CSS <-> React (in-line style) here: https://htbkoo.github.io/CssToAndFromReact/?utm_source=github_readme_css_to_and_from_react_tldr
 
 ### What is this repository for? ###
 
@@ -25,7 +25,7 @@ CSS <-> React (in-line style) here: https://htbkoo.github.io/CssToAndFromReact/
     - [x] Update description in the page
     - [ ] Full (at least enough) automated test coverage
     - [ ] More refactoring (more related to personal style)
-* An instance would be deployed to GitHub Page: https://htbkoo.github.io/CssToAndFromReact/
+* An instance would be deployed to GitHub Page: https://htbkoo.github.io/CssToAndFromReact/?utm_source=github_readme_css_to_and_from_react
 
 ### How do I get set up? ###
 
